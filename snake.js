@@ -18,9 +18,9 @@ class Snake {
 }
 
 class Apple {
-    constructor() {
+    constructor(size) {
         this.color = "red"
-        this.size = snake.size
+        this.size = size
 
         var isTouching = false;
         while(!isTouching) { // find a random location that the snake doesn't already touch
@@ -44,9 +44,9 @@ class Apple {
 
 var canvas = document.getElementById("canvas")
 
-var snake = new Snake(20, 20, 20);
+var snake = new Snake(20, 20, 15);
 
-var apple = new Apple();
+var apple = new Apple(20);
 
 var canvasContext = canvas.getContext('2d')
 
@@ -80,7 +80,7 @@ function draw() {
     createRect(0,0,canvas.width,canvas.height,"black")
 
     for(var i = 0; i < snake.tail.length; i++) {
-        createRect(snake.tail[i].x + 2.5, snake.tail[i].y + 2.5, snake.size - 5, snake.size - 5, "white")
+        createRect(snake.tail[i].x + 2.5, snake.tail[i].y + 2.5, snake.size, snake.size, "white")
     }
 
     canvasContext.font = "20px Arial"
@@ -121,10 +121,9 @@ window.addEventListener("keydown",function(event) {
             snake.dX = 1
             snake.dY = 0
             break;
-        case "Space":
+        case "Space": // to pause movement
             snake.dX = 0
             snake.dY = 0
-            console.log("Paused!")
             break;
     }
     
