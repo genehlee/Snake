@@ -18,12 +18,13 @@ class Snake {
 }
 
 class Apple {
-    constructor(size) {
+    constructor() {
         this.color = "red"
-        this.size = size
+        this.size = snake.size
 
-        var isTouching = false;
+        var isTouching = false
         while(!isTouching) { // find a random location that the snake doesn't already touch
+            isTouching = false
             this.x = Math.floor(Math.random() * canvas.width / snake.size) * snake.size
             this.y = Math.floor(Math.random() * canvas.height / snake.size) * snake.size
 
@@ -44,9 +45,9 @@ class Apple {
 
 var canvas = document.getElementById("canvas")
 
-var snake = new Snake(20, 20, 15);
+var snake = new Snake(20, 20, 20);
 
-var apple = new Apple(20);
+var apple = new Apple();
 
 var canvasContext = canvas.getContext('2d')
 
@@ -80,7 +81,7 @@ function draw() {
     createRect(0,0,canvas.width,canvas.height,"black")
 
     for(var i = 0; i < snake.tail.length; i++) {
-        createRect(snake.tail[i].x + 2.5, snake.tail[i].y + 2.5, snake.size, snake.size, "white")
+        createRect(snake.tail[i].x + 2.5, snake.tail[i].y + 2.5, snake.size - 5, snake.size - 5, "white")
     }
 
     canvasContext.font = "20px Arial"
